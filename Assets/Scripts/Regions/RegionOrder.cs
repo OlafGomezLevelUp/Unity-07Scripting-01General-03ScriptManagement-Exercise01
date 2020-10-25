@@ -3,43 +3,64 @@ using UnityEngine;
 
 public class RegionOrder : MonoBehaviour
 {
-
-    public Action EventSample;
-
-    public int PublicPropertySample { get; set; }
-
+    #region PublicVariables
+    public int publicPropertySample { get; set; }
     public string publicVariableSample;
+    #endregion
 
+    #region PrivateVariables
     private string _privateVariableSample;
+    #endregion
 
+    #region Events
+    public Action eventSample;
+    #endregion
+
+    #region DependencyInjection
     private void Awake()
     {
 
     }
+    #endregion
 
+    #region EventRegion
+    private void OnEnable()
+    {
+        eventSample += OnEventSample;
+    }
+
+    private void OnDisable()
+    {
+        eventSample -= OnEventSample;
+    }
+    #endregion
+
+    #region FirstFrame
     public void Start()
     {
 
     }
+    #endregion
 
-
-    private void PrivateSampleMethod()
-    {
-
-    }
-
-
+    #region MyMethod
     public void PublicSampleMethod()
     {
 
     }
 
+    private void PrivateSampleMethod()
+    {
 
+    }
+    #endregion
+
+    #region MyEvents
     private void OnEventSample()
     {
-        if (EventSample != null)
+        if (eventSample != null)
         {
-            EventSample.Invoke();
+            eventSample.Invoke();
         }
     }
+    #endregion
 }
